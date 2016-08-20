@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package interfaz;
-
+import javax.swing.JOptionPane;
 /**
  *
  * @author USUARIO
@@ -27,21 +27,156 @@ public class principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtBono = new javax.swing.JTextField();
+        txtHijos = new javax.swing.JTextField();
+        txtSueldoBase = new javax.swing.JTextField();
+        txtSueldoTotal = new javax.swing.JTextField();
+        cmdCalcular = new javax.swing.JButton();
+        cmdBorrar = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setText("2. Pago total del empleado");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 21, 248, 35));
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setText("Sueldo base");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 100, 20));
+
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel3.setText("Número de hijos");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel4.setText("Total bonificación");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel5.setText("Sueldo final");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
+
+        txtBono.setEditable(false);
+        getContentPane().add(txtBono, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 100, 30));
+
+        txtHijos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtHijosKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtHijos, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 100, 30));
+
+        txtSueldoBase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSueldoBaseActionPerformed(evt);
+            }
+        });
+        txtSueldoBase.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSueldoBaseKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtSueldoBase, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 100, 30));
+
+        txtSueldoTotal.setEditable(false);
+        getContentPane().add(txtSueldoTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 100, 30));
+
+        cmdCalcular.setText("Calcular");
+        cmdCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCalcularActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, -1, -1));
+
+        cmdBorrar.setText("Borrar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
+int nhijos;
+double sbase, bono, total;
+String btotal, sfinal;
+
+if(txtSueldoBase.getText().trim().isEmpty()){
+        JOptionPane.showMessageDialog(this, "Digite el sueldo base","error", JOptionPane.ERROR_MESSAGE);  
+        txtSueldoBase.requestFocusInWindow();
+        txtSueldoBase.selectAll();
+
+     }  
+     else if(txtHijos.getText().trim().isEmpty()){
+        JOptionPane.showMessageDialog(this, "Digite número de hijos","error", JOptionPane.ERROR_MESSAGE);  
+        txtHijos.requestFocusInWindow(); 
+         txtHijos.selectAll();    
+
+     }
+ 
+     else{
+     sbase=Double.parseDouble(txtSueldoBase.getText());
+     nhijos=Integer.parseInt(txtHijos.getText());
+     
+     if(nhijos==0){
+         
+     }
+    bono = nhijos*80000;
+    total = bono+sbase;
+    
+    btotal=String.valueOf(bono);
+    txtBono.setText (btotal);    
+    
+    sfinal=String.valueOf(total);
+    txtSueldoTotal.setText (sfinal);      
+         
+     }
+
+
+
+    }//GEN-LAST:event_cmdCalcularActionPerformed
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+     txtSueldoBase.setText("");
+     txtHijos.setText("");
+     txtBono.setText("");
+     txtSueldoTotal.setText("");
+     txtSueldoBase.requestFocusInWindow();
+    }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void txtSueldoBaseKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSueldoBaseKeyTyped
+char c=evt.getKeyChar(); 
+       
+          if(!Character.isDigit(c)) { 
+              getToolkit().beep();    
+              evt.consume();
+              
+          }
+    }//GEN-LAST:event_txtSueldoBaseKeyTyped
+
+    private void txtHijosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHijosKeyTyped
+    char c=evt.getKeyChar(); 
+       
+          if(!Character.isDigit(c)) { 
+              getToolkit().beep();    
+              evt.consume();
+              
+          }
+    }//GEN-LAST:event_txtHijosKeyTyped
+
+    private void txtSueldoBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSueldoBaseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSueldoBaseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +214,16 @@ public class principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cmdBorrar;
+    private javax.swing.JButton cmdCalcular;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField txtBono;
+    private javax.swing.JTextField txtHijos;
+    private javax.swing.JTextField txtSueldoBase;
+    private javax.swing.JTextField txtSueldoTotal;
     // End of variables declaration//GEN-END:variables
 }
